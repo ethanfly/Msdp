@@ -1,0 +1,137 @@
+body {
+    /*background: -webkit-linear-gradient(right top, #73D45A, #17ADC2); !* Safari 5.1 - 6.0 *!*/
+    /*background: -o-linear-gradient(bottom left, #73D45A, #17ADC2); !* Opera 11.1 - 12.0 *!*/
+    /*background: -moz-linear-gradient(bottom left, #73D45A, #17ADC2); !* Firefox 3.6 - 15 *!*/
+    /*background: linear-gradient(to bottom left, #73D45A, #17ADC2); !* 标准的语法 *!*/
+    background: url("../img/bg.jpg") no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+html, body {
+    height: 100%;
+    font-family: "Microsoft YaHei UI", "微软雅黑";
+}
+
+.clear {
+    clear: both;
+}
+
+.login {
+    width: 320px;
+    height: 280px;
+    background-color: #fff;
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.1);
+    /*border: 1px solid #efefef;*/
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -160px;
+    margin-top: -140px;
+}
+
+.login .title {
+    height: 60px;
+    text-align: center;
+}
+
+.login .input {
+    border-left: solid 5px transparent;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    height: 60px;
+    text-align: center;
+    padding: 10px 20px 10px 15px;
+}
+
+.login .input .input-box {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    height: 40px;
+    overflow: hidden;
+}
+
+.login .input .input-box label {
+    float: left;
+    height: 40px;
+    line-height: 40px;
+    width: 10%;
+    color: #D5D6D8;
+}
+
+.login .input .input-box input {
+    border-radius: 0;
+    outline: none;
+    border: none;
+    height: 40px;
+    float: right;
+    width: 90%;
+}
+
+.login .input.active {
+    background-color: #F2F6F7;
+    border-left: solid 5px #4F8EF7;
+}
+
+.login .input.active .input-box {
+    border-color: #D2DEEA;
+}
+
+.login .input.active label {
+    color: #D2DEEA;
+}
+
+.input-form {
+    padding: 10px 20px;
+}
+
+.input-form label {
+    color: #A9A9A9;
+    float: left;
+    font-size: 14px;
+}
+
+.input-form .checkbox {
+    text-align: center;
+    line-height: 20px;
+    margin-right: 5px;
+    float: left;
+    width: 20px;
+    height: 20px;
+    border: 1px solid #ddd;
+}
+
+.input-form .checkbox .fa {
+    color: #fff;
+}
+
+.input-form .checked {
+    background-color: #4F8EF7;
+    border-color: #4F8EF7;
+}
+
+.input-form .submit {
+    height: 40px;
+    border: none;
+    outline: none;
+    width: 100%;
+    background-color: #42D79F;
+    color: #fff;
+    box-shadow: 2px 2px 5px rgba(66, 215, 159, 0.5);
+}
+
+.footer {
+    width: 320px;
+    position: absolute;
+    bottom: -60px;
+    color: #eee;
+    font-size: 14px;
+    text-align: center;
+    line-height: 1.5em;
+}
+
+.footer p {
+    margin: 0;
+}
