@@ -19,4 +19,18 @@ class User extends Model
     {
         return $this->hasMany('App\Evaluate');
     }
+
+    public function getGenderAttribute($value)
+    {
+        switch ($value) {
+            case 0:
+                return '未设置';
+            case 1:
+                return '男';
+            case 2:
+                return '女';
+            default:
+                return '未知';
+        }
+    }
 }

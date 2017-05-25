@@ -114,5 +114,11 @@ class ShopController extends Controller
     public function destroy($id)
     {
         //
+        $bo = Shop::destroy((int)$id);
+        if ($bo) {
+            return response()->json(['code' => 1]);
+        } else {
+            return response()->json(['code' => 0]);
+        }
     }
 }

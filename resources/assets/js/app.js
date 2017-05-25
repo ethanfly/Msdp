@@ -15,6 +15,7 @@ import MarketList from "./components/MarketList.vue";
 import MarketAdd from "./components/MarketAdd.vue";
 import ShopList from "./components/ShopList.vue";
 import ShopAdd from "./components/ShopAdd.vue";
+import CommentList from "./components/CommentList.vue";
 
 require('./bootstrap');
 require('font-awesome/css/font-awesome.min.css');
@@ -40,8 +41,10 @@ window.api = {
     market: 'api/admin/market/',
     type: 'api/admin/type/',
     shop: 'api/admin/shop/',
-    setting: 'api/admin/setting',
-    upload: 'api/admin/upload'
+    setting: 'api/admin/setting/',
+    upload: 'api/admin/upload/',
+    banner: 'api/admin/banner/',
+    comment: 'api/admin/comment/'
 };
 
 const routes = [
@@ -54,6 +57,7 @@ const routes = [
     {path: '/shop', component: ShopList},
     {path: '/shop/:id(\\d+)', component: ShopAdd, name: 'shopEdit'},
     {path: '/shop/add', component: ShopAdd, name: 'shopAdd'},
+    {path: '/comment', component: CommentList}
 ];
 
 const router = new VueRouter({
@@ -62,5 +66,10 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    data(){
+        return {
+            routes
+        };
+    },
     router
 });

@@ -32,7 +32,7 @@
                         width="55">
                 </el-table-column>
                 <el-table-column
-                        prop="id"
+                        prop="index"
                         label="序号"
                         sortable
                         width="100">
@@ -138,7 +138,12 @@
                         page: this.pagination.current
                     }
                 }).then(r => {
-                    this.shops = r.data.data;
+                    let pagination = this.pagination;
+                    this.shops = _.map(r.data.data, function ($item, $index) {
+                        $index = (pagination.current - 1) * pagination.size + $index + 1;
+                        $item.index = $index;
+                        return $item;
+                    });
                     this.pagination.current = r.data.meta.pagination.current_page;
                     this.pagination.total = r.data.meta.pagination.total;
                 });

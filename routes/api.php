@@ -22,8 +22,11 @@ $api->version('v1', function ($api) {
         $api->get('shop', 'ApiController@shop');
         $api->get('evaluate', 'ApiController@evaluateList');
         $api->post('evaluate', 'ApiController@evaluateAdd');
+        $api->get('banner', 'ApiController@getBanner');
 //        后台接口
         $api->group(['prefix' => 'admin'], function ($api) {
+            $api->post('banner', 'IndexController@setBanner');
+            $api->delete('banner', 'IndexController@deleteBanner');
             $api->post('upload', 'IndexController@upload');
             $api->get('setting', 'IndexController@getSetting');
             $api->post('setting', 'IndexController@setSetting');
@@ -31,6 +34,7 @@ $api->version('v1', function ($api) {
             $api->resource('market', 'MarketController');
             $api->resource('type', 'TypeController');
             $api->resource('shop', 'ShopController');
+            $api->resource('comment', 'CommentController');
         });
     });
 });

@@ -13,7 +13,7 @@
                             :on-success="handleAvatarSuccess"
                             :before-upload="beforeAvatarUpload">
                         <img v-if="form.img" :src="form.img" class="avatar">
-                        <span class="el-upload">320*200不超过2M</span>
+                        <span class="el-upload">比例8:5不超过2M</span>
                     </el-upload>
                 </el-form-item>
                 <el-form-item label="百度纬度" prop="latitude">
@@ -33,12 +33,14 @@
 <script>
     export default {
         data() {
+            let reg = /^[1-9]\d*\.\d*|0\.\d*[1-9]\d*$/;
             var latitudeCheck = (rule, value, callback) => {
+                console.log(reg.test(value));
                 if (!value) {
                     return callback(new Error('纬度不能为空'));
                 }
-                if (!Number.isInteger(value)) {
-                    callback(new Error('请输入数字值'));
+                if (!reg.test(value)) {
+                    return callback(new Error('请输入小数值'));
                 } else {
                     if (value > 90 || value < -90) {
                         return callback(new Error('纬度范围在-90~+90之间'));
@@ -50,8 +52,8 @@
                 if (!value) {
                     return callback(new Error('经度不能为空'));
                 }
-                if (!Number.isInteger(value)) {
-                    callback(new Error('请输入数字值'));
+                if (!reg.test(value)) {
+                    return callback(new Error('请输入小数值'));
                 } else {
                     if (value > 180 || value < -180) {
                         return callback(new Error('经度范围在-180~+180之间'));

@@ -7,7 +7,6 @@
                             expand-trigger="click"
                             :options="market"
                             v-model="form.selectMarket"
-                            @change="changes"
                             style="width: 100%">
                     </el-cascader>
                 </el-form-item>

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Evaluate;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class CommentController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +14,27 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $user = User::paginate($request->size);
-        return response()->json($user);
+        $evaluates = Evaluate::all();
+        $evaluates = $evaluates->map(function ($item) {
+            $user = $item->user;
+            $market = empty($item->market_id) ? '' : $item->market->name;
+            $shop = empty($item->shop_id) ? '' : $item->shop->name;
+            return [
+                'id' => $item->id,
+                'nickname' => $user->nickname,
+                'avatarUrl' => $user->avatarUrl,
+                'created_at' => date('Y-m-d H:i:s', strtotime($item->created_at)),
+                'field1' => $item->field1,
+                'field2' => $item->field2,
+                'field3' => $item->field3,
+                'field4' => $item->field4,
+                'feel' => $item->feel ?: '',
+                'others' => $item->others ?: '',
+                'market' => $market,
+                'shop' => $shop,
+            ];
+        });
+        return response()->json(paginate($request, $evaluates->toArray(), $request->size));
     }
 
     /**
@@ -42,7 +61,7 @@ class UserController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\User $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -53,7 +72,7 @@ class UserController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\User $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -65,26 +84,27 @@ class UserController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
-     * @param  \App\User $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
         //
-        $user = User::find($id);
-        $user->type = $request->type;
-        $user->save();
-        return response()->json(['code' => 1]);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\User $user
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
-        //
+        $bo = Evaluate::destroy((int)$id);
+        if ($bo) {
+            return response()->json(['code' => 1]);
+        } else {
+            return response()->json(['code' => 0]);
+        }
     }
 }

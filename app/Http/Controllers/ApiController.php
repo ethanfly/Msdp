@@ -11,7 +11,6 @@ use App\Setting;
 use App\Shop;
 use App\Type;
 use App\User;
-use Hamcrest\Core\Set;
 use Illuminate\Http\Request;
 use Ixudra\Curl\Facades\Curl;
 
@@ -158,6 +157,15 @@ class ApiController extends Controller
             return $this->response()->item($evaluate, new EvaluateTransformer());
         } else {
             return $this->response()->errorBadRequest('请传入shop_id或者market_id');
+        }
+    }
+
+    public function getBanner()
+    {
+        if ($banner = Setting::where('key', 'banner')->get()) {
+            return response()->json(['code' => 1, 'data' => $banner]);
+        } else {
+            return response()->json(['code' => 0]);
         }
     }
 }

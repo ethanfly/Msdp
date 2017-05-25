@@ -19,6 +19,7 @@
             <el-menu-item :index="route.shop.list.path" :route="route.shop.list"><i class="fa fa-list"></i>查看
             </el-menu-item>
         </el-submenu>
+        <el-menu-item :index="route.comment.path" :route="route.comment"><i class="fa fa-comments"></i>评论列表</el-menu-item>
     </el-menu>
 </template>
 
@@ -38,6 +39,7 @@
                         add: {path: '/shop/add'},
                         list: {path: '/shop'}
                     },
+                    comment: {path: '/comment'}
                 }
             }
         },
